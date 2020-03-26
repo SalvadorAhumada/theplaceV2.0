@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
+import Main from './Main';
+import store from './store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Deploy App test</h1>
-      <p>Data from database:</p>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Main />
+      </div>
+    </Provider>
   );
 }
 
