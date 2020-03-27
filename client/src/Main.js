@@ -6,15 +6,20 @@ import { PropTypes } from 'prop-types';
 class Main extends Component {
 
     componentDidMount() {
-        this.props.getBooks();
+        this.props.getBooks()
     }
 
     render() {
-        const { books } = this.props;
+        const { books } = this.props.books
         return (
             <div>
                 <h2>Deploy test</h2>
                 <p>Information from Database:</p>
+        <p> {books.map((book) => (
+            <li key={book._id}>
+                { book.title }
+            </li>
+        ))}</p>
             </div>
         );
     }
@@ -25,8 +30,8 @@ Main.propTypes = {
     books: PropTypes.object.isRequired
 }
 
-const MapStateToProps = state => ({
+const mapStateToProps = state => ({
     books:state.books
 });
 
-export default connect(MapStateToProps, { getBooks })(Main);
+export default connect(mapStateToProps, { getBooks })(Main);
