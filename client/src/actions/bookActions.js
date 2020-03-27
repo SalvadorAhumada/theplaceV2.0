@@ -14,7 +14,17 @@ export const getBooks = () => dispatch => {
                 payload:res.data
             })
         )
-        .catch(err => console.log(err));
+        .catch(err => 
+            axios
+            .get('api/books')
+            .then(res => 
+                dispatch({
+                    type:GET_BOOKS,
+                    payload:res.data
+                })
+                )
+                .catch(err => console.log(err))
+            );
 };
 
 export const setBooksLoading = () => {
