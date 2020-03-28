@@ -1,0 +1,73 @@
+.library{
+    border: 3px solid #73A6AD;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+img {
+    background-color: #73a6ad;
+}
+
+div.form-book {
+    width: 100%;
+    background:white;
+}
+
+div.form-book h2 {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #73a6ad;
+    font-size: 1.1rem;
+    font-family: 'Spartan', sans-serif;
+}
+
+button {
+    border: none;
+    background: #4A8FE7;
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+    font-family: 'Spartan', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+button:hover {
+    background: rgb(56, 111, 182);
+    transition:0.5s; 
+}
+
+.clean button {
+    font-size: 0.7rem;
+    cursor: pointer;
+    background-color: rgb(246, 77, 77);
+}
+
+.clean button:hover {
+    background-color: rgb(248, 45, 45);
+}
+
+.reading {
+    width: 300px;
+    padding: 20px;
+}
+
+@media (max-width: 900px) {
+    img{
+        display:none;
+    }
+
+    #new-book {
+        margin-bottom:20px;
+    }
+  }

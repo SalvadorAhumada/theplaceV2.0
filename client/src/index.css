@@ -18,3 +18,12 @@ code {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+body {
+  background-image: url('./img/books-in-black-wooden-book-shelf-159711.png');
+  background-size: cover;
+  margin: 0;
+  font-family: 'Spartan', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
