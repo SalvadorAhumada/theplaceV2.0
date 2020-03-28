@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { getBooks } from './actions/bookActions';
 import { PropTypes } from 'prop-types';
 
-class library extends Component {
+class books extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -107,7 +107,7 @@ class library extends Component {
         }
       }
       
-      library.propTypes = {
+      books.propTypes = {
         getBooks: PropTypes.func.isRequired,
         books: PropTypes.object.isRequired
       }
@@ -116,4 +116,4 @@ class library extends Component {
         books:state.books
     });
 
-export default connect(mapStateToProps, { getBooks })(library);
+export default connect(mapStateToProps, { getBooks })(books);

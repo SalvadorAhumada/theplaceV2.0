@@ -1,11 +1,10 @@
 import axios from 'axios';
 import {
     GET_BOOKS,
-    BOOKS_LOADING
+    ADD_BOOK
 } from './types';
 
 export const getBooks = () => dispatch => {
-    dispatch(setBooksLoading());
     axios
         .get('api/books')
         .then(res => 
@@ -27,8 +26,13 @@ export const getBooks = () => dispatch => {
             );
 };
 
-export const setBooksLoading = () => {
-    return {
-        type:BOOKS_LOADING
-    };
-};
+export const addBook = newBook => dispatch => {
+    axios
+    .post('api/books', newBook)
+          .then( res => {
+              dispatch({
+                  type:ADD_BOOK,
+                  payload:newBook
+              })
+          }).catch( err => console.log(err))
+}

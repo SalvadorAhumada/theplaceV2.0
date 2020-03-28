@@ -1,6 +1,7 @@
 import {
     GET_BOOKS,
-    BOOKS_LOADING
+    BOOKS_LOADING,
+    ADD_BOOK
 } from '../actions/types';
 
 const initialState = {
@@ -21,6 +22,11 @@ export default function(state = initialState, action) {
                 ...state,
                 loading:true
             };
+        case ADD_BOOK:
+            return {
+                ...state,
+                books:[action.payload, ...state.books]
+            }
         default:
             return state;
     }

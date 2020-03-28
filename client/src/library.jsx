@@ -5,6 +5,9 @@ import { Animated } from "react-animated-css";
 import Books from './books';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { addBook } from './actions/bookActions';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 class library extends Component {
   constructor(props){
@@ -79,25 +82,7 @@ class library extends Component {
             year:this.state.year
           };
 
-          // return axios.post('http://localhost:5000/books/add', newBook)
-          // .then( res => {
-            
-          //   if(res){
-      
-          //     document.getElementById('reset-form').click();
-
-          //     let {bookCount} = this.state
-
-          //     this.setState({
-          //       bookCount: bookCount + 1
-          //     });
-
-          //     console.log(this.state.bookCount)
-          //   }
-      
-          // }).catch( err => {
-          //   console.log(err);
-          // })
+          this.props.addBook(newBook);
         }
       })
     }
@@ -155,4 +140,12 @@ class library extends Component {
   }
 }
 
-export default library;
+library.propTypes = {
+  addBook: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  book:state.books
+});
+
+export default connect(mapStateToProps, { addBook })(library);

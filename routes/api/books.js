@@ -13,16 +13,14 @@ router.get('/', (req,res) => {
 });
 
 router.post('/', (req,res) => {
-    const title = req.body.title;
-    const author = req.body.author;
-    const genre = req.body.genre;
-    const year = req.body.year;
+
+    console.log(req.body);
     
     const newBook = new Book({
-        title,
-        author,
-        genre,
-        year
+        title:req.body.title,
+        author:req.body.author,
+        genre:req.body.genre,
+        year:req.body.year
     });
 
     newBook.save()
