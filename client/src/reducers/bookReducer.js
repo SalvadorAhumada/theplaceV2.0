@@ -1,7 +1,8 @@
 import {
     GET_BOOKS,
     BOOKS_LOADING,
-    ADD_BOOK
+    ADD_BOOK,
+    DELETE_BOOK
 } from '../actions/types';
 
 const initialState = {
@@ -26,6 +27,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 books:[action.payload, ...state.books]
+            }
+        case DELETE_BOOK:
+            return {
+                ...state,
+                books:state.books.filter(item =>  item._id !== action.payload)
             }
         default:
             return state;

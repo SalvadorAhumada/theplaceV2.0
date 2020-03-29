@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 import Books from './books';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { addBook } from './actions/bookActions';
+import { getBooks, addBook } from './actions/bookActions';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
@@ -20,9 +20,12 @@ class library extends Component {
       show:false,
       showAlert:false,
       showSuccess:false,
-      newBook:{},
-      bookCount:0
+      newBook:{}
     };
+  }
+
+  componentDidMount(){
+    this.props.getBooks()
   }
 
   addTitle = e => {
@@ -83,6 +86,7 @@ class library extends Component {
           };
 
           this.props.addBook(newBook);
+          document.getElementById('reset-form').click();
         }
       })
     }
@@ -133,7 +137,7 @@ class library extends Component {
                   </form>
                 </div>
             </div>
-            <Books bookCount={this.state.bookCount}/>
+            <Books list={this.state.list}/>
         </Animated>
       </React.Fragment>
     );
@@ -145,7 +149,7 @@ library.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  book:state.books
+  books:state.books
 });
 
-export default connect(mapStateToProps, { addBook })(library);
+export default connect(mapStateToProps, { getBooks, addBook })(library);

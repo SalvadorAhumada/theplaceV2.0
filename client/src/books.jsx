@@ -1,43 +1,16 @@
 import React, { Component } from "react";
 import './books.css';
 import { Animated } from "react-animated-css";
-import axios from 'axios';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { connect } from 'react-redux';
-import { getBooks } from './actions/bookActions';
-import { PropTypes } from 'prop-types';
+import {  getBooks, deleteBook } from './actions/bookActions';
 
 class books extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      showModal:false,
-      books:[]
-    };
-  }
-  
-    componentDidMount(){
-      this.props.getBooks()
-  }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.bookCount !== this.props.bookCount){
-      // axios.get('http://localhost:5000/books/')
-      // .then( res => {
-        
-      //   if(res){
-  
-      //     this.setState({
-      //       books:res.data
-      //     });
-  
-      //   }
-  
-      // }).catch( err => {
-      //   console.log(err);
-      // })
-    }
+
+  componentDidMount(){
+    this.props.getBooks()
   }
 
   deleteBook = book =>{
@@ -54,31 +27,7 @@ class books extends Component {
       confirmButtonText:'Yeah!',
       showLoaderOnConfirm:true,
       preConfirm: () => {
-
-        // axios.delete('http://localhost:5000/books/'+ book._id)
-        // .then( res => {
-          
-        //   if(res){
-    
-        //     axios.get('http://localhost:5000/books/')
-        //     .then( res => {
-              
-        //       if(res){
-        
-        //         this.setState({
-        //           books:res.data
-        //         });
-        
-        //       }
-        
-        //     }).catch( err => {
-        //       console.log(err);
-        //     })
-        //   }
-    
-        // }).catch( err => {
-        //   console.log(err);
-        // })
+        this.props.deleteBook(book._id);
 
       }
     })
@@ -87,7 +36,7 @@ class books extends Component {
   render() {
         return (
             <React.Fragment>
-                <Animated animationin="fadeIn" isvisible="true">
+                <Animated  animationin="fadeIn" isvisible="true">
                   <div className="books">
                       <h2>MY BOOKS</h2>
                       <div className="flex-container" animationin="fadeIn" isvisible="true">
@@ -106,14 +55,7 @@ class books extends Component {
           );
         }
       }
-      
-      books.propTypes = {
-        getBooks: PropTypes.func.isRequired,
-        books: PropTypes.object.isRequired
-      }
-    
-    const mapStateToProps = state => ({
+      const mapStateToProps = state => ({
         books:state.books
-    });
-
-export default connect(mapStateToProps, { getBooks })(books);
+      });
+export default connect(mapStateToProps, { getBooks, deleteBook })(books);
