@@ -13,8 +13,6 @@ router.get('/', (req,res) => {
 });
 
 router.post('/', (req,res) => {
-
-    console.log(req.body);
     
     const newBook = new Book({
         title:req.body.title,
@@ -25,7 +23,14 @@ router.post('/', (req,res) => {
 
     newBook.save()
         .then(() => res.json('Book Added!'))
+        // .then(() => res.json(res))
         .catch(err => res.status(400).json('Error at adding book: ' + err));
 })
+
+router.delete('/:id',(req,res) => {
+    Book.findById(req.params.id)
+        .then(book => book.remove().then(() => res.json({ success: true})))
+        .catch(err  => res.status(404).json({ success: false}))
+});
 
 module.exports = router;
