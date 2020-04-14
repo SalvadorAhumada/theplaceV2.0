@@ -37,6 +37,23 @@
   }
 }
 
-.animated.fadeIn {
-  text-align:center;
+.MuiCheckbox-colorSecondary.Mui-checked {
+  color: #282a28!important;
+}
+
+.MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1 {
+  color: #282a28!important;
+  font-size: 0.7rem!important;
+  font-family: 'Spartan', sans-serif;
+}
+
+.MuiFormControlLabel-root {
+  margin:0 10px 0 10px!important;
+  height:30px;
+}
+
+.MuiFormGroup-root {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 500px;
 }

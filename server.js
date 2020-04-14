@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 // routes
-const books = require('./routes/api/books');
+const links = require('./routes/api/links');
 
 const app = express();
 
@@ -22,7 +22,7 @@ mongoose
     .catch(err => console.log(err))
 
 // Use Routes
-app.use('/api/books', books);
+app.use('/api/links', links);
 
 // Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){

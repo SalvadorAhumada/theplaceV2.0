@@ -1,7 +1,7 @@
 {
-  "name": "mern-deploy",
+  "name": "theplace",
   "version": "1.0.0",
-  "description": "A quick example of a MERN app deployment",
+  "description": "Everything Frontend",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
