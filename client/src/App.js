@@ -16,17 +16,18 @@ import {
 function App() {
 
   const [state, setState] = React.useState({
-    images: false,
-    videos: false,
-    icons: false,
-    fonts:false
+    Images: true,
+    Videos: true,
+    Icons: true,
+    Fonts:true
   });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState({...state, [event.target.name] : event.target.checked});
+
   };
 
-  const { images, videos, icons, fonts } = state;
+  const { Images, Videos, Icons, Fonts } = state;
 
   return (
     <Provider store={store}>
@@ -36,19 +37,19 @@ function App() {
             <h1>The Place</h1>
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox checked={images} onChange={handleChange} name="images" />}
+                control={<Checkbox checked={Images} onChange={handleChange} name="Images" />}
                 label="Images"
               />
               <FormControlLabel
-                control={<Checkbox checked={videos} onChange={handleChange} name="videos" />}
+                control={<Checkbox checked={Videos} onChange={handleChange} name="Videos" />}
                 label="Videos"
               />
               <FormControlLabel
-                control={<Checkbox checked={icons} onChange={handleChange} name="icons" />}
+                control={<Checkbox checked={Icons} onChange={handleChange} name="Icons" />}
                 label="Icons"
               />
             <FormControlLabel
-                control={<Checkbox checked={fonts} onChange={handleChange} name="fonts" />}
+                control={<Checkbox checked={Fonts} onChange={handleChange} name="Fonts" />}
                 label="Fonts"
               />
             </FormGroup>
@@ -74,7 +75,7 @@ function App() {
             <div className="main">Usuarios</div>
           </Route>
           <Route path="/">
-            <Main/>
+            <Main filters={state}/>
           </Route>
         </Switch>
     </Router>

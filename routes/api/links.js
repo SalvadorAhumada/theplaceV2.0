@@ -18,7 +18,9 @@ router.post('/', (req,res) => {
         title:req.body.name,
         author:req.body.url,
         genre:req.body.file,
-        year:req.body.description
+        year:req.body.description,
+        likes:req.body.likes,
+        dislikes:req.body.dislikes
     });
 
     newLink.save()

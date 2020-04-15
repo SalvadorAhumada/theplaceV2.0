@@ -7,7 +7,10 @@ const linkSchema = new Schema({
     category: {type:String, required:true},
     url:{ type:String },
     img:{ type:String },
-    description:{ type:String }
+    description:{ type:String },
+    likes: {type:Number},
+    dislikes:{type:Number}
+
 },{
     timestamps:true,
 })
