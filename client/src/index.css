@@ -30,14 +30,16 @@ section.menu {
   text-align:center;
   font-size: 1.5rem;
   text-shadow: 1px 1px 10px #00000038;
+  margin-bottom:12px;
 }
 
 .menu p {
-  font-weight: bold;
-  margin: 10px;
-  width: 60px;
+  margin: 12px;
   font-size: 0.9rem;
-  color:white;
+  color: white;
+  text-align: center;
+  margin-top: 0;
+  font-weight: 100;
 }
 
 ul {
@@ -112,18 +114,13 @@ div.MuiFormGroup-root {
   padding-top: 5px;
 }
 
-.card-link footer span.likes {
+.card-link footer span {
   color:rgba(255, 255, 255, 0.4);
   transition:0.2s;
 }
 
 .card-link img {
   width:100%;
-}
-
-.card-link footer span.likes:hover {
-  color:white;
-  transition:0.2s;
 }
 
 .card-link footer span.likes span {

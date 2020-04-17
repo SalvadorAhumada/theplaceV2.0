@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import ThumbDown from "@material-ui/icons/ThumbDown";
-import ThumbUp from "@material-ui/icons/ThumbUp";
+// import ThumbDown from "@material-ui/icons/ThumbDown";
+// import ThumbUp from "@material-ui/icons/ThumbUp";
 
 function CardLink(props) {
 
@@ -40,12 +40,7 @@ function CardLink(props) {
                     <p>{ props.unit.description }</p>
                 </a>
                 <footer>
-                    <span className="likes">
-                        <ThumbDown/><span>{formatNumber(props.unit.dislikes)}</span>
-                    </span>
-                    <span className="likes">
-                        <ThumbUp/><span>{formatNumber(props.unit.likes)}</span>
-                    </span>
+                    <span>{props.unit.category}</span>
                 </footer>
             </div>
   );

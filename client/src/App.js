@@ -35,6 +35,7 @@ function App() {
         <Animated animationin="slideInDown" isvisible="true">
           <section className="menu">
             <h1>The Place</h1>
+            <p>Everything's here</p>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={Images} onChange={handleChange} name="Images" />}
