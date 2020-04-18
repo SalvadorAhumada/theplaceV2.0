@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-// import ThumbDown from "@material-ui/icons/ThumbDown";
-// import ThumbUp from "@material-ui/icons/ThumbUp";
+import ThumbUp from "@material-ui/icons/ThumbUp";
+import ThumbDown from "@material-ui/icons/ThumbDown";
 
 function CardLink(props) {
 
@@ -39,8 +39,10 @@ function CardLink(props) {
                     {getThumbnail(props.unit.img)}
                     <p>{ props.unit.description }</p>
                 </a>
+                <span>{props.unit.category}</span>
                 <footer>
-                    <span>{props.unit.category}</span>
+                    <div>{props.unit.likes} <ThumbDown/></div>
+                    <div>{props.unit.dislikes} <ThumbUp/></div>
                 </footer>
             </div>
   );

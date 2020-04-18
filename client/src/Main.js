@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getLinks } from './actions/linkActions';
 import { PropTypes } from 'prop-types';
 import './index.css';
-import { Animated } from "react-animated-css";
 import loading from "./img/loading.svg";
 const Cardlink = React.lazy( ()=> import('./card-link'));
 
@@ -16,9 +15,9 @@ class Main extends Component {
     filterLinks = link => {
         if(this.props.filters[link.category] === true) {
             return <Suspense fallback={<div className="card-link-lazy"><img src={loading}/></div>} key={link._id}>
-                        <Animated animationin="bounceIn" animationout="fadeOut" isvisible="true">
+                        <div className="animated bounceIn">
                             <Cardlink unit={link}/>
-                        </Animated>
+                        </div>
                     </Suspense>
             } else {
             return null;

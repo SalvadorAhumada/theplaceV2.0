@@ -1,4 +1,4 @@
-import React, {setState} from 'react';
+import React from 'react';
 import './App.css';
 import store from './store';
 import { Provider } from 'react-redux';
@@ -7,6 +7,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Animated } from "react-animated-css";
 import Main from './Main';
+import Add from './Add';
+import GoogleLogin from 'react-google-login'
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,6 +28,10 @@ function App() {
     setState({...state, [event.target.name] : event.target.checked});
 
   };
+
+  const responseGoogle = response => {
+    console.log(response)
+  }
 
   const { Images, Videos, Icons, Fonts } = state;
 
@@ -54,17 +60,6 @@ function App() {
                 label="Fonts"
               />
             </FormGroup>
-          {/* <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul> */}
           </section>
         </Animated>
 
@@ -76,7 +71,19 @@ function App() {
             <div className="main">Usuarios</div>
           </Route>
           <Route path="/">
-            <Main filters={state}/>
+            <div>
+              <Main filters={state}/>
+              <Add/>
+              <div className="login-google">
+              <GoogleLogin
+    clientId="996679026839-eflfc0lj1fo8uk18kuehi1hj83s79l3g.apps.googleusercontent.com"
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
+  </div>
+            </div>
           </Route>
         </Switch>
     </Router>
