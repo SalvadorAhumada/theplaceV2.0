@@ -174,3 +174,26 @@ div.MuiFormGroup-root {
 .bg-4 {
   background-color:#004346b3;
 }
+
+.login-warning {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height:50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-warning div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width:250px;
+  border-radius: 10px;
+  background: #39413b;
+  color: white;
+  padding: 5px;
+  box-shadow:2px 2px rgba(0, 0, 0, 0.473);
+}

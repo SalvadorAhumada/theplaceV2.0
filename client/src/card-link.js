@@ -33,6 +33,7 @@ function CardLink(props) {
     }
 
     return (
+        <div>
             <div className={`card-link ${setBackground(props.unit.category)}`}>
                 <a href={props.unit.url} target="_blank" rel="noopener noreferrer">
                     <h3>{ props.unit.name }</h3>
@@ -41,10 +42,11 @@ function CardLink(props) {
                 </a>
                 <span>{props.unit.category}</span>
                 <footer>
-                    <div>{props.unit.likes} <ThumbDown/></div>
-                    <div>{props.unit.dislikes} <ThumbUp/></div>
+                    <div onClick={()=> props.onClick(1)}>{formatNumber(props.unit.likes)} <ThumbDown/></div>
+                    <div onClick={()=> props.onClick(-1)}>{formatNumber(props.unit.dislikes)} <ThumbUp/></div>
                 </footer>
             </div>
+        </div>
   );
 }
 

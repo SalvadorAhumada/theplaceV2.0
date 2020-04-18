@@ -8,7 +8,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { Animated } from "react-animated-css";
 import Main from './Main';
 import Add from './Add';
-import GoogleLogin from 'react-google-login'
+import GoogleLogin from 'react-google-login';
+import GoogleLogout from 'react-google-login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,16 +25,40 @@ function App() {
     Fonts:true
   });
 
+  const [user, setUser] = React.useState({
+    user:null
+  })
+
   const handleChange = (event) => {
     setState({...state, [event.target.name] : event.target.checked});
 
   };
 
   const responseGoogle = response => {
-    console.log(response)
+    setUser({
+      user:response.googleId
+    })
+  }
+
+  const logout = () => {
+    console.log('logged out!')
   }
 
   const { Images, Videos, Icons, Fonts } = state;
+
+  const loggedin = user.user ? <GoogleLogout
+  buttonText="Logout"
+  client_id="996679026839-eflfc0lj1fo8uk18kuehi1hj83s79l3g.apps.googleusercontent.com"
+  onLogoutSuccess={logout}
+>
+</GoogleLogout>  : <GoogleLogin
+  clientId="996679026839-eflfc0lj1fo8uk18kuehi1hj83s79l3g.apps.googleusercontent.com"
+  buttonText="Login"
+  onSuccess={responseGoogle}
+  onFailure={responseGoogle}
+  cookiePolicy={'single_host_origin'}
+  isSignedIn={true}
+  />  
 
   return (
     <Provider store={store}>
@@ -72,17 +97,11 @@ function App() {
           </Route>
           <Route path="/">
             <div>
-              <Main filters={state}/>
+              <Main filters={state} user={user}/>
               <Add/>
               <div className="login-google">
-              <GoogleLogin
-    clientId="996679026839-eflfc0lj1fo8uk18kuehi1hj83s79l3g.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />
-  </div>
+                {loggedin}
+              </div>
             </div>
           </Route>
         </Switch>
