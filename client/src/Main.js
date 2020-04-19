@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { getLinks } from './actions/linkActions';
+import { addUser, saveToUser } from './actions/userActions';
 import { PropTypes } from 'prop-types';
 import './index.css';
 import loading from "./img/loading.svg";
@@ -13,11 +14,21 @@ class Main extends Component {
         this.props.getLinks()
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.user.user !== prevProps.user.user) {
+            let user ={
+                googleId:this.props.user.user,
+                favorites:[]
+            }
+            this.props.addUser(user)
+        }
+      }
+
     state = {
         show:false
     }
 
-    handleVote = number => {
+    handleVote = name => {
         if(!this.props.user.user) {
             this.setState({show: true})
 
@@ -25,7 +36,11 @@ class Main extends Component {
                 this.setState({show: false})
             }, 2000);
         } else {
-            console.log('you voted!')
+            let info = {
+                googleId:this.props.user.user,
+                site:name
+            }
+            this.props.saveToUser(info)
         }
     }
 
@@ -45,7 +60,7 @@ class Main extends Component {
         const { links } = this.props.links
 
         const showModal = this.state.show ? <div className="login-warning animated fadeIn faster">
-            <div><Clear/>Please login to vote!</div>
+            <div><Clear/>Please login to save this site!</div>
             </div> : null
 
         return (
@@ -61,11 +76,13 @@ class Main extends Component {
 
 Main.propTypes = {
     getLinks: PropTypes.func.isRequired,
-    links: PropTypes.object.isRequired
+    links: PropTypes.object.isRequired,
+    addUser:PropTypes.func.isRequired,
+    saveToUser:PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-    links:state.links
+    links:state.links,
 });
 
-export default connect(mapStateToProps, { getLinks })(Main);
+export default connect(mapStateToProps, { getLinks, addUser, saveToUser })(Main);

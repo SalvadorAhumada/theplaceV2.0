@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import ThumbUp from "@material-ui/icons/ThumbUp";
-import ThumbDown from "@material-ui/icons/ThumbDown";
+import React from 'react';
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 function CardLink(props) {
 
@@ -25,13 +24,6 @@ function CardLink(props) {
           );
     }
 
-    const formatNumber = number => {
-        let p = number.toFixed(2).split(".");
-        return p[0].split("").reverse().reduce(function(acc, num, i, orig) {
-            return  num === "-" ? acc : num + (i && !(i % 3) ? "," : "") + acc;
-        }, "");
-    }
-
     return (
         <div>
             <div className={`card-link ${setBackground(props.unit.category)}`}>
@@ -40,10 +32,9 @@ function CardLink(props) {
                     {getThumbnail(props.unit.img)}
                     <p>{ props.unit.description }</p>
                 </a>
-                <span>{props.unit.category}</span>
                 <footer>
-                    <div onClick={()=> props.onClick(1)}>{formatNumber(props.unit.likes)} <ThumbDown/></div>
-                    <div onClick={()=> props.onClick(-1)}>{formatNumber(props.unit.dislikes)} <ThumbUp/></div>
+                    <div>{props.unit.category}</div>
+                    <div onClick={()=> props.onClick(props.unit.name)}> <FavoriteBorder/></div>
                 </footer>
             </div>
         </div>
