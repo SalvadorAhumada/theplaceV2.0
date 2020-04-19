@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
     ADD_USER,
     GET_USERS,
-    SAVE_TO_USER
+    SAVE_TO_USER,
+    GET_FAVS
 } from './types';
 
 export const addUser = newUser => dispatch => {
@@ -50,3 +51,15 @@ export const getUsers = () => dispatch => {
                 .catch(err => console.log(err))
             );
 };
+
+export const getFavs = () => dispatch => {
+    axios
+        .get('api/users')
+        .then(res => 
+            dispatch({
+                type:GET_FAVS,
+                payload:res.data[0].favorites
+            })
+            )
+            .catch(err => console.log(err))
+    };

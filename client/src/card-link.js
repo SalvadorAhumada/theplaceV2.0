@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import Favorite from "@material-ui/icons/Favorite";
 
 function CardLink(props) {
+
+    const [fav, setFav] = React.useState({
+        fav:false
+      });
 
     const setBackground = category => {
         switch(category) {
@@ -17,6 +22,15 @@ function CardLink(props) {
                 return null;
         }
    } 
+
+   useEffect(() => {
+       if(props.favs.indexOf(props.unit.name) > -1) {
+           setFav({
+            fav:true
+            })
+        }
+    },
+    [props.favs])
    
     const getThumbnail = img => {
         return (
@@ -24,6 +38,11 @@ function CardLink(props) {
           );
     }
 
+            //return <div> <Favorite/></div>
+                //return <div onClick={()=> props.onClick(props.unit.name)}> <FavoriteBorder/></div>
+
+    const isFavorite = fav.fav ? <div><Favorite/></div> : <div onClick={()=> props.onClick(props.unit.name)}> <FavoriteBorder/></div>
+        
     return (
         <div>
             <div className={`card-link ${setBackground(props.unit.category)}`}>
@@ -34,7 +53,7 @@ function CardLink(props) {
                 </a>
                 <footer>
                     <div>{props.unit.category}</div>
-                    <div onClick={()=> props.onClick(props.unit.name)}> <FavoriteBorder/></div>
+                    {isFavorite}
                 </footer>
             </div>
         </div>
