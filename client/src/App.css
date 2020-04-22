@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffffb4;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,11 +38,11 @@
 }
 
 .MuiCheckbox-colorSecondary.Mui-checked {
-  color: #282a28!important;
+  color: white!important;
 }
 
 .MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1 {
-  color: #282a28!important;
+  color: #ffffff!important;
   font-size: 0.7rem!important;
   font-family: 'Spartan', sans-serif;
 }
@@ -69,9 +69,20 @@
   color: white;
   background: #4a845c;
   border-radius: 20px;
-  box-shadow: 3px 3px 2px #0000007d;
+  box-shadow: 3px 3px 2px #252525b4;
   cursor: pointer;
   height: 35px;
+  transition:0.3s;
+  z-index: 2;
+}
+
+.Add:hover {
+  transform: scale(1.1);
+  transition:0.3s;
+}
+
+.MuiSvgIcon-root {
+  fill:#ffffffd2!important;
 }
 
 .login-google {
@@ -79,4 +90,9 @@
   bottom: 0;
   right: 0;
   padding: 10px;
+}
+
+.main-wrapper {
+  height: 84%;
+  width: 100%;
 }

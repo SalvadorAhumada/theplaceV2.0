@@ -26,27 +26,54 @@ router.post('/', (req,res) => {
 })
 
 router.patch('/', (req,res) => {
+  switch(req.body.actionType) {
+    case 'saved':
+      User.findOne({googleId: req.body.googleId})
+      .then(res => {
+        if(res.favorites.indexOf(req.body.site) !== -1) { 
+          // Element already exists
+          return;
+        } else { 
+          let newFavorites = [...res.favorites,req.body.site]
+          User.update({
+            googleId: req.body.googleId
+          }, {
+            $set: { 
+              favorites: newFavorites
+            }
+          },(err, user) => {
+            if (err) throw error
+            console.log('saved ', req.body.site)
+          })
+        }
+      })
+      .catch(err => console.log(err))
+    break;
+    case 'deleted':
+      User.findOne({googleId: req.body.googleId})
+      .then(res => {
+        let new_favorites = res.favorites;
 
-  User.findOne({googleId: req.body.googleId})
-    .then(res => {
-      if(res.favorites.indexOf(req.body.site) !== -1) { 
-        // Element already exists
-        return;
-      } else { 
-        let newFavorites = [...res.favorites,req.body.site]
+        let index = new_favorites.indexOf(req.body.site);
+
+        let deleted_number = new_favorites.splice(index,1);
+        
         User.update({
           googleId: req.body.googleId
         }, {
           $set: { 
-            favorites: newFavorites
+            favorites: new_favorites
           }
         },(err, user) => {
           if (err) throw error
-          console.log(user)
+          console.log('deleted ', req.body.site)
         })
-      }
-    })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
+      })
+    break;
+    default:
+      return;
+  }
 });
 
 router.get('/', (req,res) => {
