@@ -1,6 +1,7 @@
 import {
     ADD_USER,
     GET_USERS,
+    SAVE_TO_USER,
     GET_FAVS
 } from '../actions/types';
 
@@ -10,6 +11,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+    console.log(action.type)
     switch(action.type) {
         case GET_USERS:
             return {
@@ -25,6 +27,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 favs:action.payload
+            }
+        case SAVE_TO_USER:
+            return {
+                ...state,
+                users:action.payload
             }
         default:
             return state;

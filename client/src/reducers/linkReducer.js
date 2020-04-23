@@ -2,7 +2,6 @@ import {
     GET_LINKS,
     ADD_LINK,
     DELETE_LINK,
-    LINK_LOADING
 } from '../actions/types';
 
 const initialState = {
@@ -17,11 +16,6 @@ export default function(state = initialState, action) {
                 ...state,
                 links:action.payload,
                 loading:false
-            };
-        case LINK_LOADING:
-            return {
-                ...state,
-                loading:true
             };
         case ADD_LINK:
             return {

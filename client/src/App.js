@@ -27,7 +27,7 @@ function App() {
 
   const [user, setUser] = React.useState({
     user:null
-  })
+  });
 
   const handleChange = (event) => {
     setState({...state, [event.target.name] : event.target.checked});
@@ -64,8 +64,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <Animated animationin="slideInDown" isvisible="true">
-          <section className="menu">
-            <h1>The Place</h1>
+          <section className="menu animated slideInDown">
+            <h1>[ The Place ]</h1>
             <p>Everything's here</p>
             <FormGroup>
               <FormControlLabel
@@ -96,12 +96,12 @@ function App() {
             <div className="main">Usuarios</div>
           </Route>
           <Route path="/">
-            <div>
+            <div className="main-wrapper">
               <Main filters={state} user={user}/>
-              <Add/>
               <div className="login-google">
                 {loggedin}
               </div>
+              <Add />
             </div>
           </Route>
         </Switch>

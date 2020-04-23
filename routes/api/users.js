@@ -26,27 +26,32 @@ router.post('/', (req,res) => {
 })
 
 router.patch('/', (req,res) => {
-
-  User.findOne({googleId: req.body.googleId})
-    .then(res => {
-      if(res.favorites.indexOf(req.body.site) !== -1) { 
-        // Element already exists
-        return;
-      } else { 
-        let newFavorites = [...res.favorites,req.body.site]
-        User.update({
-          googleId: req.body.googleId
-        }, {
-          $set: { 
-            favorites: newFavorites
-          }
-        },(err, user) => {
-          if (err) throw error
-          console.log(user)
-        })
-      }
-    })
-    .catch(err => console.log(err))
+  switch(req.body.actionType) {
+    case 'saved':
+          const newFavorite = req.body.site;
+          User.findOneAndUpdate({googleId: req.body.googleId},{$push : {favorites:newFavorite}}, {new:true},(error, user) => {
+            if(error)
+              console.log(error)
+            else
+               {
+                res.json(user)
+               }
+         });
+    break;
+    case 'deleted':
+      const remove = req.body.site;
+      User.findOneAndUpdate({googleId: req.body.googleId},{$pull : {favorites:remove}}, {new:true},(error, user) => {
+        if(error)
+          console.log(error)
+        else
+           {
+            res.json(user)
+           }
+     });
+    break;
+    default:
+      return;
+  }
 });
 
 router.get('/', (req,res) => {

@@ -5,7 +5,6 @@ import { addUser, saveToUser, getFavs } from './actions/userActions';
 import { PropTypes } from 'prop-types';
 import './index.css';
 import loading from "./img/loading.svg";
-import Clear from "@material-ui/icons/Clear";
 const Cardlink = React.lazy( ()=> import('./card-link'));
 
 class Main extends Component {
@@ -29,32 +28,45 @@ class Main extends Component {
             }
 
             this.props.getFavs(user)
-        }
-
-        if(this.props.favs.length !== prevProps.favs.length) {
-            console.log('fetch me favs...')
-        }
+        };
       }
 
     state = {
-        show:false
+        show:false,
+        save:null,
+        actionType:null
     }
 
-    handleVote = name => {
+    handleVote = (name, actionType) => {
+
         if(!this.props.user.user) {
             this.setState({show: true})
 
             setTimeout(() => {
                 this.setState({show: false})
             }, 2000);
+
         } else {
             let info = {
                 googleId:this.props.user.user,
-                site:name
+                site:name,
+                actionType
+            };
+            this.props.saveToUser(info);
+
+            this.setState({
+                save:name,
+                actionType
+            });
+
+            setTimeout(() => {
+                this.setState({
+                    save:null,
+                    actionType:null
+                });
+            }, 1000);
             }
-            this.props.saveToUser(info)
         }
-    }
 
     filterLinks = link => {
         if(this.props.filters[link.category] === true) {
@@ -72,8 +84,12 @@ class Main extends Component {
         const { links } = this.props.links
 
         const showModal = this.state.show ? <div className="login-warning animated fadeIn faster">
-            <div><Clear/>Please login to save this site!</div>
+            <div>Please login to save this site!</div>
             </div> : null
+
+        const savedLink = this.state.save ?  <div className="save-warning animated fadeIn faster">
+        <div>{this.state.save } {this.state.actionType}!</div>
+        </div> : null
 
         return (
             <div>
@@ -81,6 +97,7 @@ class Main extends Component {
                     this.filterLinks(link)))}
                 </div>
                 {showModal}
+                {savedLink}
             </div>
         );
     }

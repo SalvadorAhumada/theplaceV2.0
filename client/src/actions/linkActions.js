@@ -2,12 +2,10 @@ import axios from 'axios';
 import {
     GET_LINKS,
     ADD_LINK,
-    DELETE_LINK,
-    LINK_LOADING
+    DELETE_LINK
 } from './types';
 
 export const getLinks = () => dispatch => {
-    dispatch( setLinkLoading() )
     axios
         .get('api/links')
         .then(res => 
@@ -51,9 +49,3 @@ export const deleteLink = id => dispatch => {
             })
         }).catch( err => console.log(err));
 }
-
-export const setLinkLoading = () => {
-    return {
-        type:LINK_LOADING
-    }
-};

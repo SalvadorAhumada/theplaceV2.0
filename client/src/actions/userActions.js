@@ -26,7 +26,7 @@ export const saveToUser = info => dispatch => {
                 type:SAVE_TO_USER,
                 payload:info
             })
-            dispatch( getUsers() )
+            dispatch( getFavs() )
         }).catch( err => console.log(err))
 }
 

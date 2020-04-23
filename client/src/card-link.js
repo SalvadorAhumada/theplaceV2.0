@@ -28,6 +28,10 @@ function CardLink(props) {
            setFav({
             fav:true
             })
+        } else {
+            setFav({
+                fav:false
+            })
         }
     },
     [props.favs])
@@ -38,10 +42,7 @@ function CardLink(props) {
           );
     }
 
-            //return <div> <Favorite/></div>
-                //return <div onClick={()=> props.onClick(props.unit.name)}> <FavoriteBorder/></div>
-
-    const isFavorite = fav.fav ? <div><Favorite/></div> : <div onClick={()=> props.onClick(props.unit.name)}> <FavoriteBorder/></div>
+    const isFavorite = fav.fav ? <div className="hover-fav-1" onClick={()=>props.onClick(props.unit.name, 'deleted')}><Favorite/></div> : <div className="hover-fav-2" onClick={()=> props.onClick(props.unit.name, 'saved')}> <FavoriteBorder/></div>
         
     return (
         <div>
