@@ -23,12 +23,16 @@ class Main extends Component {
             this.props.addUser(user)
         }
 
-        if(this.props.user.user)  {
+        if(this.props.user.user !== prevProps.user.user)  {
             let user ={
                 googleId:this.props.user.user
             }
 
             this.props.getFavs(user)
+        }
+
+        if(this.props.favs.length !== prevProps.favs.length) {
+            console.log('fetch me favs...')
         }
       }
 
