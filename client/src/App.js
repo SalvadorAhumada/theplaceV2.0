@@ -97,11 +97,11 @@ function App() {
           </Route>
           <Route path="/">
             <div className="main-wrapper">
+            <div className="login-google">
+                {loggedin}
+            </div>
               <Main filters={state} user={user}/>
               <Add />
-              <div className="login-google">
-                {loggedin}
-              </div>
             </div>
           </Route>
         </Switch>
