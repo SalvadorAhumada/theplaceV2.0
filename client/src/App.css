@@ -106,3 +106,21 @@ div.hover-fav-2 .MuiSvgIcon-root {
   fill:#ffffffd2;
 }
 
+@media screen and (max-width: 947px) {
+  .menu p {
+    display: none;
+  }
+
+  .menu h1 {
+    font-size: calc(15px + 1vw);
+  }
+
+  .MuiFormGroup-root  {
+    margin-top:10px;
+  }
+
+  .menu {
+  display: flex;
+    flex-direction: column;
+  }
+}
