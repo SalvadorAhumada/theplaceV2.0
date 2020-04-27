@@ -4,8 +4,9 @@ import 'materialize-css';
 import './AddLink.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import Close from "@material-ui/icons/Close";
 
-function AddLink() {
+function AddLink(props) {
 
   const [category, setCategory] = React.useState({
     category:null
@@ -40,11 +41,16 @@ function AddLink() {
     setUser({name});
   }
 
+  const handleCLose = x => {
+    props.closeCallBack(x);
+  }
+
 
   return (
     <Animated animationin="slideInDown" className="fadeIn-wrapper" isvisible="true">
       <div className="form-wrapper">
         <form className="col s12" onSubmit={sendLink}>
+          <div className="close" onClick={() => handleCLose(false)}>×</div>
           <p>If you know a link that want to share please let us know. Name and email are optional.</p>
             <div className="row">
                 <div className="input-field col">
@@ -62,9 +68,9 @@ function AddLink() {
             </div>
             <label htmlFor="Email">Category</label><br></br>
             <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
-            <p><button className="btn waves-effect waves-light" type="submit" name="action" onclick={sendLink}>Submit
-            <i className="material-icons right">send</i>
-            </button></p>
+            <p className="btn">
+              <button type="submit" name="action" onclick={sendLink}>Submit</button>
+            </p>
         </form>
       </div>
     </Animated>

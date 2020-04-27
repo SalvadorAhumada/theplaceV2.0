@@ -10,6 +10,7 @@ import Main from './Main';
 import Add from './Add';
 import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
+import AddLink from './AddLink';
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,6 +28,10 @@ function App() {
 
   const [user, setUser] = React.useState({
     user:null
+  });
+
+  const [show, setShow] = React.useState({
+    show:false
   });
 
   const handleChange = (event) => {
@@ -60,14 +65,24 @@ function App() {
   isSignedIn={true}
   />  
 
+  const modalFunction = x => {
+    setShow({ show: x });
+  };
+
+  const closeFunction = x => {
+    setShow({ show: x });
+  };
+
+  const openForm = show.show ? <AddLink closeCallBack={closeFunction}/> : null;
+
   return (
     <Provider store={store}>
       <Router>
         <Animated animationin="slideInDown" isvisible="true">
-          <section className="menu animated slideInDown">
-            <h1>[ The Place ]</h1>
-            <p>Everything's here</p>
-            <FormGroup>
+          <nav className="menu animated slideInDown">
+            <h1><span>the</span><span>place</span></h1>
+            <Add modalCallback={modalFunction}/>
+            {/*<FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={Images} onChange={handleChange} name="Images" />}
                 label="Images"
@@ -84,8 +99,8 @@ function App() {
                 control={<Checkbox checked={Fonts} onChange={handleChange} name="Fonts" />}
                 label="Fonts"
               />
-            </FormGroup>
-          </section>
+            </FormGroup>*/}
+          </nav>
         </Animated>
 
         <Switch>
@@ -101,7 +116,7 @@ function App() {
                 {loggedin}
             </div>
               <Main filters={state} user={user}/>
-              <Add />
+              {openForm}
             </div>
           </Route>
         </Switch>

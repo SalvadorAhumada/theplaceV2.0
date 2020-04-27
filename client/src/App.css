@@ -58,29 +58,6 @@
   max-width: 500px;
 }
 
-.Add .MuiSvgIcon-root {
-  font-size: 2.2rem;
-}
-
-.Add {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  color: white;
-  background: #4a845c;
-  border-radius: 20px;
-  box-shadow: 3px 3px 2px #252525b4;
-  cursor: pointer;
-  height: 35px;
-  transition:0.3s;
-  z-index: 2;
-}
-
-.Add:hover {
-  transform: scale(1.1);
-  transition:0.3s;
-}
-
 .login-google {
   position: fixed;
   bottom: 0;
