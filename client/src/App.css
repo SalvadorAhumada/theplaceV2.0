@@ -38,18 +38,19 @@
 }
 
 .MuiCheckbox-colorSecondary.Mui-checked {
-  color: white!important;
+  color: #6b8d92!important;
 }
 
 .MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1 {
-  color: #ffffff!important;
+  color: #757575!important;
   font-size: 0.7rem!important;
-  font-family: 'Spartan', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .MuiFormControlLabel-root {
   margin:0 10px 0 10px!important;
   height:30px;
+  display: block;
 }
 
 .MuiFormGroup-root {
@@ -63,6 +64,7 @@
   bottom: 0;
   right: 0;
   padding: 10px;
+  z-index: 3;
 }
 
 .main-wrapper {
@@ -83,21 +85,22 @@ div.hover-fav-2 .MuiSvgIcon-root {
   fill:#ffffffd2;
 }
 
-@media screen and (max-width: 947px) {
-  .menu p {
-    display: none;
+
+@media screen and (max-width: 647px) {
+  div.MuiFormGroup-root {
+    display:none;
   }
 
-  .menu h1 {
-    font-size: calc(15px + 1vw);
-  }
+  .filter {
+    display:grid;
+    }
+  
+  .form-wrapper {
+    overflow: auto;
+    }
 
-  .MuiFormGroup-root  {
-    margin-top:10px;
-  }
-
-  .menu {
-  display: flex;
-    flex-direction: column;
+  .close {
+    left: 276px;
+    top: 405px;
   }
 }

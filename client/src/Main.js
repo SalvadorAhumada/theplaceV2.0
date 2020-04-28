@@ -64,7 +64,7 @@ class Main extends Component {
                     save:null,
                     actionType:null
                 });
-            }, 1000);
+            }, 3000);
             }
         }
 

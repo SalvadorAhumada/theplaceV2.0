@@ -5,12 +5,12 @@ import { Provider } from 'react-redux';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Animated } from "react-animated-css";
 import Main from './Main';
 import Add from './Add';
 import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
 import AddLink from './AddLink';
+import FilterList from "@material-ui/icons/FilterList";
 import {
   BrowserRouter as Router,
   Switch,
@@ -78,11 +78,10 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Animated animationin="slideInDown" isvisible="true">
+        <div className="nav-wrapper">
           <nav className="menu animated slideInDown">
             <h1><span>the</span><span>place</span></h1>
-            <Add modalCallback={modalFunction}/>
-            {/*<FormGroup>
+            <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={Images} onChange={handleChange} name="Images" />}
                 label="Images"
@@ -99,9 +98,13 @@ function App() {
                 control={<Checkbox checked={Fonts} onChange={handleChange} name="Fonts" />}
                 label="Fonts"
               />
-            </FormGroup>*/}
+            </FormGroup>
+            <div className="filter">
+              <FilterList/>
+            </div>
+            <Add modalCallback={modalFunction}/>
           </nav>
-        </Animated>
+        </div>
 
         <Switch>
           <Route path="/about">
@@ -112,6 +115,7 @@ function App() {
           </Route>
           <Route path="/">
             <div className="main-wrapper">
+            <p className="menu animated fadeIn">A collection of Free assests for your website. You can login with your email account to save your favorites!</p>
             <div className="login-google">
                 {loggedin}
             </div>
