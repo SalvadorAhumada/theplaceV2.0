@@ -69,6 +69,7 @@ function App() {
       document.getElementById("filter").style.display = "none"
     } else  {
       document.getElementById("filter").style.display = "block"
+      document.getElementById("filter").classList.add("show-menu");
     }
   }
 
@@ -126,7 +127,7 @@ function App() {
                 label="Favs"
               />
             </FormGroup>
-            <div className="filter" onClick={handleFilters}>
+            <div className="filter animated fadeIn delay-1s" onClick={handleFilters}>
               <FilterList />
             </div>
             <Add modalCallback={modalFunction}/>
@@ -142,7 +143,7 @@ function App() {
           </Route>
           <Route path="/">
             <div className="main-wrapper">
-            <p className="menu animated fadeIn">A collection of Free assests for your website. You can login with your email account to save your favorites.</p>
+            <p className="menu animated fadeIn">A collection of Free assests for your website. You can login with your google account to save your favorites.</p>
             <div className="login-google">
                 {loggedin}
             </div>

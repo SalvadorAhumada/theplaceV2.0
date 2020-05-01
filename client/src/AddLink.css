@@ -69,8 +69,24 @@ input {
     color: #ffffff94;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-webkit-autofill:valid,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-transition-delay: 99999s;
+    -webkit-text-background-color:#42525b;
+}
+
 .Dropdown-root {
     margin-top: 10px;
+}
+
+.Dropdown-control {
+    background: #e8f0fe;
 }
 
 .close-wrapper {
@@ -79,6 +95,7 @@ input {
     width: 100%;
     display: flex;
     justify-content: center;
+    left:0;
 }
 
 .close {

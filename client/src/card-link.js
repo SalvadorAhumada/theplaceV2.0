@@ -34,7 +34,7 @@ function CardLink(props) {
             })
         }
     },
-    [props.favs])
+    [props.favs,props.unit.name])
    
     const getThumbnail = img => {
         return (

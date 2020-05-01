@@ -5,6 +5,8 @@ import './AddLink.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import emailjs from 'emailjs-com';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function AddLink(props) {
 
@@ -22,7 +24,11 @@ function AddLink(props) {
 
   const [url, setUrl] = useState({
     url:null
-  })
+  });
+
+  const [submit, setSubmit] = useState({
+    text:'Submit'
+  });
 
   const options = [
     'Images', 'Videos', 'Fonts', 'Icons','Other'
@@ -36,6 +42,8 @@ function AddLink(props) {
 
   const sendLink = e => {
     e.preventDefault()
+
+    setSubmit({text:'Sending...'})
     var message = {
       name: user.name || 'n/a',
       email: email.email,
@@ -45,7 +53,20 @@ function AddLink(props) {
    
   emailjs.send('gmail', 'template_YxMehNmU', message, 'user_ocr7zo32SbePhG9my4G31')
       .then(response => {
-         alert('success!');
+        setSubmit({text:'Sent!'})
+        
+        const MySwal = withReactContent(Swal)
+
+        MySwal.fire({
+          icon:'success',
+          title:'Thanks!',
+          html: `Your link has been sent.`,
+          showConfirmButton:true,
+          showLoaderOnConfirm:true,
+          confirmButtonText:'Neat!',
+        }).then(res => {
+          handleClose(false)
+        })
       }, error => {
          console.log('FAILED...', error);
       });
@@ -69,7 +90,7 @@ function AddLink(props) {
     setEmail({email})
   }
 
-  const handleCLose = x => {
+  const handleClose = x => {
     props.closeCallBack(x);
   }
 
@@ -79,7 +100,7 @@ function AddLink(props) {
       <div className="form-wrapper">
         <form className="col s12" onSubmit={sendLink}>
           <div className="close-wrapper">
-            <div className="close" onClick={() => handleCLose(false)}>×</div>
+            <div className="close" onClick={() => handleClose(false)}>×</div>
           </div>
           <p>If you know a link that want to share please let us know. Name and email are optional.</p>
             <div className="row">
@@ -93,13 +114,13 @@ function AddLink(props) {
                 </div>
                 <div className="input-field col">
                     <label htmlFor="url">URL</label><br></br>
-                    <input onChange={urlHandler} id="url" type="url" className="validate"/>
+                    <input onChange={urlHandler} id="url" type="url" required className="validate"/>
                 </div>
             </div>
             <label htmlFor="Email">Category</label><br></br>
             <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
             <p className="btn">
-              <button type="submit" name="action" onclick={sendLink}>Submit</button>
+              <button type="submit" name="action" onclick={sendLink}>{submit.text}</button>
             </p>
         </form>
       </div>

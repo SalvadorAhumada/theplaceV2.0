@@ -85,10 +85,31 @@ div.hover-fav-2 .MuiSvgIcon-root {
   fill:#ffffffd2;
 }
 
+.show-menu {
+  display:hidden;
+}
+
 @media screen and (max-width: 699px) {
   #filter {
     display:none;
   }
+
+  .show-menu {
+  position: fixed;
+  top: 492%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 2px 2px 2px #000000c7;
+  width: 131px;
+  padding: 10px;
+  left: 6%;
+  border-radius: 5px;
+}
+
+.MuiTypography-body1 {
+  width:50px;
+}
 
   .filter {
     display:grid;
