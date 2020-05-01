@@ -106,6 +106,40 @@ div.hover-fav-2 .MuiSvgIcon-root {
   fill:#ffffffd2;
 }
 
+span.favs {
+  color:white;
+}
+
+.MuiFormControlLabel-root:nth-of-type(5) span.MuiTypography-root path {
+  fill:#ffa0a0!important;
+}
+
+.MuiFormControlLabel-root:nth-of-type(5) span.MuiTypography-root {
+  margin-top:5px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #4689ae;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  font-family: 'Spartan', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+form p {
+  text-align: left;
+  font-weight: bolder;
+}
+
+p.button {
+  text-align:center;
+  font-weight: bolder;
+}
+
 @media screen and (max-width: 947px) {
   .menu p {
     display: none;

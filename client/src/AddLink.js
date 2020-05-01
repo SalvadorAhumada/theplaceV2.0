@@ -62,8 +62,7 @@ function AddLink() {
             </div>
             <label htmlFor="Email">Category</label><br></br>
             <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
-            <p><button className="btn waves-effect waves-light" type="submit" name="action" onclick={sendLink}>Submit
-            <i className="material-icons right">send</i>
+            <p className="button"><button className="btn waves-effect waves-light" type="submit" name="action" onClick={sendLink}>Submit
             </button></p>
         </form>
       </div>

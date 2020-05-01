@@ -10,6 +10,7 @@ import Main from './Main';
 import Add from './Add';
 import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
+import Favorite from "@material-ui/icons/Favorite";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,7 +23,8 @@ function App() {
     Images: true,
     Videos: true,
     Icons: true,
-    Fonts:true
+    Fonts:true,
+    Favs:false
   });
 
   const [user, setUser] = React.useState({
@@ -44,7 +46,7 @@ function App() {
     console.log('logged out!')
   }
 
-  const { Images, Videos, Icons, Fonts } = state;
+  const { Images, Videos, Icons, Fonts, Favs } = state;
 
   const loggedin = user.user ? <GoogleLogout
   buttonText="Logout"
@@ -83,6 +85,10 @@ function App() {
             <FormControlLabel
                 control={<Checkbox checked={Fonts} onChange={handleChange} name="Fonts" />}
                 label="Fonts"
+              />
+            <FormControlLabel
+                control={<Checkbox checked={Favs} className="favs" onChange={handleChange} name="Favs" />}
+                label={<Favorite/>}
               />
             </FormGroup>
           </section>
