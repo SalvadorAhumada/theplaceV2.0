@@ -86,8 +86,8 @@ div.hover-fav-2 .MuiSvgIcon-root {
 }
 
 
-@media screen and (max-width: 647px) {
-  div.MuiFormGroup-root {
+@media screen and (max-width: 699px) {
+  #filter {
     display:none;
   }
 

@@ -11,6 +11,8 @@ import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
 import AddLink from './AddLink';
 import FilterList from "@material-ui/icons/FilterList";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,7 +25,8 @@ function App() {
     Images: true,
     Videos: true,
     Icons: true,
-    Fonts:true
+    Fonts:true,
+    Favs:false
   });
 
   const [user, setUser] = React.useState({
@@ -35,6 +38,18 @@ function App() {
   });
 
   const handleChange = (event) => {
+    if(user.user === null) {
+      const MySwal = withReactContent(Swal)
+
+      MySwal.fire({
+        icon:'error',
+        title:'Whoops!',
+        html: `Please login to see your favorites!`,
+        showConfirmButton:true,
+        confirmButtonText:'Okey!',
+      })
+      return;
+    }
     setState({...state, [event.target.name] : event.target.checked});
 
   };
@@ -49,7 +64,16 @@ function App() {
     console.log('logged out!')
   }
 
-  const { Images, Videos, Icons, Fonts } = state;
+  const handleFilters = () => {
+    if(document.getElementById("filter").style.display == "block") {
+      document.getElementById("filter").style.display = "none"
+    } else  {
+      document.getElementById("filter").style.display = "block"
+    }
+  }
+
+
+  const { Images, Videos, Icons, Fonts, Favs } = state;
 
   const loggedin = user.user ? <GoogleLogout
   buttonText="Logout"
@@ -81,7 +105,7 @@ function App() {
         <div className="nav-wrapper">
           <nav className="menu animated slideInDown">
             <h1><span>the</span><span>place</span></h1>
-            <FormGroup>
+            <FormGroup id="filter">
               <FormControlLabel
                 control={<Checkbox checked={Images} onChange={handleChange} name="Images" />}
                 label="Images"
@@ -98,9 +122,13 @@ function App() {
                 control={<Checkbox checked={Fonts} onChange={handleChange} name="Fonts" />}
                 label="Fonts"
               />
+              <FormControlLabel
+                control={<Checkbox checked={Favs} onChange={handleChange} name="Favs" />}
+                label="Favs"
+              />
             </FormGroup>
-            <div className="filter">
-              <FilterList/>
+            <div className="filter" onClick={handleFilters}>
+              <FilterList />
             </div>
             <Add modalCallback={modalFunction}/>
           </nav>
@@ -115,7 +143,7 @@ function App() {
           </Route>
           <Route path="/">
             <div className="main-wrapper">
-            <p className="menu animated fadeIn">A collection of Free assests for your website. You can login with your email account to save your favorites!</p>
+            <p className="menu animated fadeIn">A collection of Free assests for your website. You can login with your email account to save your favorites.</p>
             <div className="login-google">
                 {loggedin}
             </div>
