@@ -38,18 +38,19 @@
 }
 
 .MuiCheckbox-colorSecondary.Mui-checked {
-  color: white!important;
+  color: #6b8d92!important;
 }
 
 .MuiTypography-root.MuiFormControlLabel-label.MuiTypography-body1 {
-  color: #ffffff!important;
+  color: #757575!important;
   font-size: 0.7rem!important;
-  font-family: 'Spartan', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .MuiFormControlLabel-root {
   margin:0 10px 0 10px!important;
   height:30px;
+  display: block;
 }
 
 .MuiFormGroup-root {
@@ -58,34 +59,12 @@
   max-width: 500px;
 }
 
-.Add .MuiSvgIcon-root {
-  font-size: 2.2rem;
-}
-
-.Add {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  color: white;
-  background: #4a845c;
-  border-radius: 20px;
-  box-shadow: 3px 3px 2px #252525b4;
-  cursor: pointer;
-  height: 35px;
-  transition:0.3s;
-  z-index: 2;
-}
-
-.Add:hover {
-  transform: scale(1.1);
-  transition:0.3s;
-}
-
 .login-google {
   position: fixed;
   bottom: 0;
   right: 0;
   padding: 10px;
+  z-index: 3;
 }
 
 .main-wrapper {
@@ -106,55 +85,21 @@ div.hover-fav-2 .MuiSvgIcon-root {
   fill:#ffffffd2;
 }
 
-span.favs {
-  color:white;
-}
-
-.MuiFormControlLabel-root:nth-of-type(5) span.MuiTypography-root path {
-  fill:#ffa0a0!important;
-}
-
-.MuiFormControlLabel-root:nth-of-type(5) span.MuiTypography-root {
-  margin-top:5px;
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  background: #4689ae;
-  color: white;
-  border-radius: 10px;
-  font-weight: bold;
-  font-family: 'Spartan', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-form p {
-  text-align: left;
-  font-weight: bolder;
-}
-
-p.button {
-  text-align:center;
-  font-weight: bolder;
-}
-
-@media screen and (max-width: 947px) {
-  .menu p {
-    display: none;
+@media screen and (max-width: 699px) {
+  #filter {
+    display:none;
   }
 
-  .menu h1 {
-    font-size: calc(15px + 1vw);
-  }
+  .filter {
+    display:grid;
+    }
+  
+  .form-wrapper {
+    overflow: auto;
+    }
 
-  .MuiFormGroup-root  {
-    margin-top:10px;
-  }
-
-  .menu {
-  display: flex;
-    flex-direction: column;
+  .close {
+    left: 276px;
+    top: 405px;
   }
 }

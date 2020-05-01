@@ -64,11 +64,22 @@ class Main extends Component {
                     save:null,
                     actionType:null
                 });
-            }, 1000);
+            }, 3000);
             }
         }
 
     filterLinks = link => {
+        if(this.props.filters.Favs === true && this.props.filters[link.category] === true) {
+            if(this.props.favs.includes(link.name)) {
+                return <Suspense fallback={<div className="card-link-lazy"><img src={loading} alt="loading..."/></div>} key={link._id}>
+                            <div className="animated bounceIn">
+                                <Cardlink favs={this.props.favs} unit={link} user={this.props.user} onClick={this.handleVote}/>
+                            </div>
+                        </Suspense>
+                }
+            return;
+        }
+
         if(this.props.filters[link.category] === true) {
             return <Suspense fallback={<div className="card-link-lazy"><img src={loading} alt="loading..."/></div>} key={link._id}>
                         <div className="animated bounceIn">
@@ -76,7 +87,7 @@ class Main extends Component {
                         </div>
                     </Suspense>
             } else {
-            return null;
+            return;
         }
     }
 

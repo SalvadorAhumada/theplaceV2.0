@@ -5,12 +5,14 @@ import { Provider } from 'react-redux';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Animated } from "react-animated-css";
 import Main from './Main';
 import Add from './Add';
 import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
-import Favorite from "@material-ui/icons/Favorite";
+import AddLink from './AddLink';
+import FilterList from "@material-ui/icons/FilterList";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,7 +33,23 @@ function App() {
     user:null
   });
 
+  const [show, setShow] = React.useState({
+    show:false
+  });
+
   const handleChange = (event) => {
+    if(user.user === null) {
+      const MySwal = withReactContent(Swal)
+
+      MySwal.fire({
+        icon:'error',
+        title:'Whoops!',
+        html: `Please login to see your favorites!`,
+        showConfirmButton:true,
+        confirmButtonText:'Okey!',
+      })
+      return;
+    }
     setState({...state, [event.target.name] : event.target.checked});
 
   };
@@ -44,6 +62,14 @@ function App() {
 
   const logout = () => {
     console.log('logged out!')
+  }
+
+  const handleFilters = () => {
+    if(document.getElementById("filter").style.display === "block") {
+      document.getElementById("filter").style.display = "none"
+    } else  {
+      document.getElementById("filter").style.display = "block"
+    }
   }
 
   const { Images, Videos, Icons, Fonts, Favs } = state;
@@ -62,14 +88,23 @@ function App() {
   isSignedIn={true}
   />  
 
+  const modalFunction = x => {
+    setShow({ show: x });
+  };
+
+  const closeFunction = x => {
+    setShow({ show: x });
+  };
+
+  const openForm = show.show ? <AddLink closeCallBack={closeFunction}/> : null;
+
   return (
     <Provider store={store}>
       <Router>
-        <Animated animationin="slideInDown" isvisible="true">
-          <section className="menu animated slideInDown">
-            <h1>[ The Place ]</h1>
-            <p>Everything's here</p>
-            <FormGroup>
+        <div className="nav-wrapper">
+          <nav className="menu animated slideInDown">
+            <h1><span>the</span><span>place</span></h1>
+            <FormGroup id="filter">
               <FormControlLabel
                 control={<Checkbox checked={Images} onChange={handleChange} name="Images" />}
                 label="Images"
@@ -86,13 +121,17 @@ function App() {
                 control={<Checkbox checked={Fonts} onChange={handleChange} name="Fonts" />}
                 label="Fonts"
               />
-            <FormControlLabel
-                control={<Checkbox checked={Favs} className="favs" onChange={handleChange} name="Favs" />}
-                label={<Favorite/>}
+              <FormControlLabel
+                control={<Checkbox checked={Favs} onChange={handleChange} name="Favs" />}
+                label="Favs"
               />
             </FormGroup>
-          </section>
-        </Animated>
+            <div className="filter" onClick={handleFilters}>
+              <FilterList />
+            </div>
+            <Add modalCallback={modalFunction}/>
+          </nav>
+        </div>
 
         <Switch>
           <Route path="/about">
@@ -103,11 +142,12 @@ function App() {
           </Route>
           <Route path="/">
             <div className="main-wrapper">
+            <p className="menu animated fadeIn">A collection of Free assests for your website. You can login with your email account to save your favorites.</p>
             <div className="login-google">
                 {loggedin}
             </div>
               <Main filters={state} user={user}/>
-              <Add />
+              {openForm}
             </div>
           </Route>
         </Switch>

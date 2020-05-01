@@ -7,11 +7,35 @@
 }
 
 form {
-    background: #73a8c6;
+    background: #42525b;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 3px 3px 3px #0000006b;
     color:white;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+
+form p {
+    margin:0;
+}
+
+form .btn button {
+    border: none;
+    padding: 10px;
+    background: #2c373e;
+    color: white;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    width: 100px;
+}
+
+form .btn {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .fadeIn-wrapper {
@@ -21,33 +45,60 @@ form {
     top: 0;
     bottom: 0;
     right: 0;
+    z-index: 3;
 }
 
 .col {
     padding: 10px;
-    max-width: 250px;
-}
-
-.col p {
-    font-size:13px
+    max-width: 300px;
 }
 
 label {
-    font-family: 'Spartan', sans-serif;
     font-size: 11px;
 }
 
 input {
     padding: 5px;
     border: none;
-    background: #73a8c6;
+    background: #42525b;
     color:white;
     outline: none;
-    border-bottom: 1px solid #6c9193;
-    font-family: 'Spartan', sans-serif;
+    border-bottom: 1px solid #ffffff;
     width:95%;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff94;
 }
 
 .Dropdown-root {
     margin-top: 10px;
 }
+
+.close-wrapper {
+    position: absolute;
+    bottom: -59px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.close {
+    left: 281px;
+    bottom: -51px;
+    background: #565d60;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 2px 2px 2px #00000085;
+    transition: 0.3s;
+}
+
+
+.close:hover {
+    transform: scale(1.1);
+    transition:0.3s;
+    cursor: pointer;
+  }
